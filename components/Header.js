@@ -126,7 +126,7 @@ const Header = () => {
       </header>
       {isOpen && (
         <div
-          className={`absolute left-0 top-0 w-52 md:hidden bg-white shadow-lg rounded-lg`}
+          className={`absolute left-0 top-0 w-52 md:hidden bg-white shadow-lg rounded-lg z-10`}
         >
           <Mobile setIsOpen={setIsOpen} />
         </div>

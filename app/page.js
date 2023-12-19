@@ -1,11 +1,9 @@
-import Link from "next/link";
+import HeroBanner from "@/components/HeroBanner";
 
 export default function Home() {
   return (
     <div>
-      <h1>Hello world</h1>
-
-      <Link href="/about">About</Link>
+      <HeroBanner />
     </div>
   );
 }
