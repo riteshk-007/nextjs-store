@@ -12,6 +12,14 @@ export const POST = async (req) => {
         message: "Please fill all the fields",
         status: 400,
       });
+    } else if (email) {
+      const user = await User.findOne({ email: email });
+      if (user) {
+        return NextResponse.json({
+          message: "User already exists",
+          status: 400,
+        });
+      }
     } else {
       const isNewPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
