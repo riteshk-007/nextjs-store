@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
-import { IoBagOutline } from "react-icons/io5";
+import { BsBag } from "react-icons/bs";
 import Mobile from "./Mobile";
 import { useState } from "react";
+import SideCart from "./SideCart";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <div className="w-full relative">
       <header className="bg-white ">
@@ -72,19 +74,16 @@ const Header = () => {
                     Contact
                   </Link>
                 </li>
-
-                <li>
-                  <a
-                    className="text-gray-800 transition hover:text-gray-800/75"
-                    href="/"
-                  >
-                    <IoBagOutline />
-                  </a>
-                </li>
               </ul>
             </nav>
 
             <div className="flex items-center gap-4">
+              <span
+                onClick={() => setIsCartOpen(!isCartOpen)}
+                className="text-gray-800 transition hover:text-gray-800/75 cursor-pointer"
+              >
+                <BsBag fontSize={19} />
+              </span>
               <div className="sm:flex sm:gap-4">
                 <Link
                   href="/loginpage"
@@ -131,6 +130,9 @@ const Header = () => {
         >
           <Mobile setIsOpen={setIsOpen} />
         </div>
+      )}
+      {isCartOpen && (
+        <SideCart setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen} />
       )}
     </div>
   );
