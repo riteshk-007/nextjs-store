@@ -1,6 +1,7 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
+import Header from "@/components/Header";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -13,7 +14,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextTopLoader color="red" />
+        <NextTopLoader color="#000" height={4} />
+        <Header />
         {children}
       </body>
     </html>
