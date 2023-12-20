@@ -1,7 +1,19 @@
+"use client";
+import { Context } from "@/Context/Context";
+import Loader from "@/components/Loader";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 
 const Login = () => {
+  const { loading, error, message, login, setLogin, handleLoginSubmit } =
+    useContext(Context);
+  const handleChange = (e) => {
+    setLogin({
+      ...login,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div>
       <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -15,8 +27,18 @@ const Login = () => {
               Login to your account to continue shopping
             </p>
           </div>
-
-          <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          {error && (
+            <div
+              className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <span className="font-medium">Danger alert!</span> {message}
+            </div>
+          )}
+          <form
+            onSubmit={handleLoginSubmit}
+            className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+          >
             <div>
               <label htmlFor="email" className="sr-only">
                 Email
@@ -28,6 +50,9 @@ const Login = () => {
                   className="w-full rounded-lg border-gray-200 border p-4 pe-12 text-sm shadow-sm"
                   placeholder="test@gmail.com"
                   required
+                  name="email"
+                  value={login.email}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -43,6 +68,9 @@ const Login = () => {
                   className="w-full rounded-lg border-gray-200 border p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter password"
                   required
+                  name="password"
+                  value={login.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -59,7 +87,7 @@ const Login = () => {
                 type="submit"
                 className="inline-block rounded-lg bg-[#394149] px-10 md:px-20 py-3 text-sm font-medium text-white"
               >
-                Login
+                {loading ? <Loader /> : "Login"}
               </button>
             </div>
           </form>
