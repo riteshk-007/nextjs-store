@@ -1,7 +1,17 @@
+"use client";
+import { Context } from "@/Context/Context";
+import Loader from "@/components/Loader";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 
 const Signup = () => {
+  const { signup, setSignUp, handleSignUpSubmit, loading, error, message } =
+    useContext(Context);
+
+  const handleChnage = (e) => {
+    setSignUp({ ...signup, [e.target.name]: e.target.value });
+  };
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -11,6 +21,7 @@ const Signup = () => {
             src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             className="absolute inset-0 h-full w-full object-cover"
             layout="fill"
+            objectFit="cover"
           />
         </aside>
 
@@ -44,11 +55,21 @@ const Signup = () => {
             </h1>
 
             <p className="mt-4 leading-relaxed text-gray-500">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              nam dolorum aliquam, quibusdam aperiam voluptatum.
+              Signup to get started with Shop
             </p>
+            {error && (
+              <div
+                className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <span className="font-medium">Danger alert!</span> {message}
+              </div>
+            )}
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form
+              onSubmit={handleSignUpSubmit}
+              className="mt-8 grid grid-cols-6 gap-6"
+            >
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="FirstName"
@@ -60,8 +81,10 @@ const Signup = () => {
                 <input
                   type="text"
                   id="FirstName"
-                  name="first_name"
+                  name="name"
                   required
+                  value={signup.name}
+                  onChange={handleChnage}
                   placeholder="name"
                   className="mt-1 h-10 px-2  w-full rounded-md border-gray-200 bg-white border text-sm text-gray-800 shadow-sm"
                 />
@@ -81,6 +104,8 @@ const Signup = () => {
                   id="Email"
                   name="email"
                   required
+                  value={signup.email}
+                  onChange={handleChnage}
                   placeholder="test@gmail.com"
                   className="mt-1 h-10 px-2 w-full rounded-md border-gray-200 bg-white border text-sm text-gray-800 shadow-sm"
                 />
@@ -100,6 +125,8 @@ const Signup = () => {
                   id="Password"
                   name="password"
                   required
+                  value={signup.password}
+                  onChange={handleChnage}
                   placeholder="*********"
                   className="mt-1 h-10 px-2 w-full rounded-md border-gray-200 bg-white border text-sm text-gray-800 shadow-sm"
                 />
@@ -123,8 +150,11 @@ const Signup = () => {
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-[#394149] bg-[#13161a] px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-[#394149] focus:outline-none focus:ring active:text-[#000000]">
-                  Create an account
+                <button
+                  className="inline-block shrink-0 rounded-md border border-[#394149] bg-[#13161a] px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-[#394149] focus:outline-none focus:ring active:text-[#000000]"
+                  type="submit"
+                >
+                  {loading ? <Loader /> : " Create an account"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
