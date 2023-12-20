@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useContext } from "react";
 
 const Mobile = ({ setIsOpen }) => {
-  const { user } = useContext(Context);
+  const { user, handleLogout } = useContext(Context);
   const name = user?.data?.name.replace(/ .*/, "");
   return (
     <div>
@@ -130,17 +130,16 @@ const Mobile = ({ setIsOpen }) => {
                 <ul className="mt-2 space-y-1 px-4">
                   {user?.data ? (
                     <>
-                      <Link
-                        href={"/loginpage"}
-                        onClick={() => setIsOpen(false)}
+                      <button
+                        type="submit"
+                        onClick={() => {
+                          handleLogout();
+                          setIsOpen(false);
+                        }}
+                        className="w-full cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
                       >
-                        <button
-                          type="submit"
-                          className="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
-                        >
-                          Logout
-                        </button>
-                      </Link>
+                        Logout
+                      </button>
                     </>
                   ) : (
                     <>

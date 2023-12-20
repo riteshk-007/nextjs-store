@@ -105,6 +105,18 @@ const ContextProvider = ({ children }) => {
       debouncedCurrentUser.cancel();
     };
   }, [login]);
+
+  // logout user
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get("/api/logout");
+      setUser(null);
+      router.push("/loginpage");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Context.Provider
       value={{
@@ -118,6 +130,7 @@ const ContextProvider = ({ children }) => {
         setLogin,
         handleLoginSubmit,
         user,
+        handleLogout,
       }}
     >
       {children}
