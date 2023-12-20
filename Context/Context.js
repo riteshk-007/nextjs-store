@@ -2,12 +2,14 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
+import { debounce } from "lodash";
 
 export const Context = createContext();
 const ContextProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [user, setUser] = useState(null);
   const [signup, setSignUp] = useState({
     name: "",
     email: "",
@@ -51,6 +53,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  // login user
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -83,6 +86,25 @@ const ContextProvider = ({ children }) => {
     }
   }, [error]);
 
+  // get user info
+  useEffect(() => {
+    let debouncedCurrentUser;
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("/api/login-user");
+        setUser(response.data);
+      } catch (error) {
+        setUser(null);
+        console.log(error);
+      }
+    };
+    debouncedCurrentUser = debounce(fetchUser, 1500);
+    debouncedCurrentUser();
+
+    return () => {
+      debouncedCurrentUser.cancel();
+    };
+  }, [login]);
   return (
     <Context.Provider
       value={{
