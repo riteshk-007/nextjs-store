@@ -2,12 +2,15 @@
 import Link from "next/link";
 import { BsBag } from "react-icons/bs";
 import Mobile from "./Mobile";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SideCart from "./SideCart";
+import { Context } from "@/Context/Context";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { user } = useContext(Context);
+  const name = user?.data?.name.replace(/ .*/, "");
   return (
     <div className="w-full relative">
       <header className="bg-white ">
@@ -77,28 +80,42 @@ const Header = () => {
               </ul>
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <span
                 onClick={() => setIsCartOpen(!isCartOpen)}
                 className="text-gray-800 transition hover:text-gray-800/75 cursor-pointer"
               >
                 <BsBag fontSize={19} />
               </span>
-              <div className="sm:flex sm:gap-4">
-                <Link
-                  href="/loginpage"
-                  className="block rounded-md bg-[#2f4550] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#1c2930] "
-                >
-                  Login
-                </Link>
+              {user?.data ? (
+                <div className="sm:flex sm:gap-4">
+                  <span className="hidden rounded-md bg-gray-100 px-4 py-2.5 text-sm font-medium text-[#2f4550] transition hover:text-[#2f4550]/75 sm:block">
+                    {name}
+                  </span>
+                  <Link
+                    href="/loginpage"
+                    className="hidden md:block rounded-md bg-[#2f4550] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#1c2930] "
+                  >
+                    Logout
+                  </Link>
+                </div>
+              ) : (
+                <div className="sm:flex sm:gap-4">
+                  <Link
+                    href="/loginpage"
+                    className="block rounded-md bg-[#2f4550] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#1c2930] "
+                  >
+                    Login
+                  </Link>
 
-                <Link
-                  className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-[#2f4550] transition hover:text-[#2f4550]/75 sm:block"
-                  href="/signupPage"
-                >
-                  Register
-                </Link>
-              </div>
+                  <Link
+                    className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-[#2f4550] transition hover:text-[#2f4550]/75 sm:block"
+                    href="/signupPage"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
 
               <button
                 onClick={() => setIsOpen(!isOpen)}

@@ -1,8 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
+import { Context } from "@/Context/Context";
 
 const products = [
   {
@@ -32,6 +33,7 @@ const products = [
   // More products...
 ];
 const SideCart = ({ setIsCartOpen, isCartOpen }) => {
+  const { user } = useContext(Context);
   return (
     <Transition.Root as={Fragment} show={isCartOpen}>
       <Dialog
@@ -148,7 +150,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                       </p>
                       <div className="mt-6">
                         <Link
-                          href="/cart"
+                          href={user?.data ? "/cart" : "/loginpage"}
                           onClick={() => setIsCartOpen(false)}
                           className="flex items-center justify-center rounded-md border border-transparent bg-[#2f4550] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#2f4550]"
                         >
