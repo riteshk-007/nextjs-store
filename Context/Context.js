@@ -117,6 +117,7 @@ const ContextProvider = ({ children }) => {
         login,
         setLogin,
         handleLoginSubmit,
+        user,
       }}
     >
       {children}
