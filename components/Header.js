@@ -72,7 +72,7 @@ const Header = () => {
                 <li>
                   <Link
                     className="text-gray-800 transition hover:text-gray-800/75 "
-                    href="/content"
+                    href="/contact"
                   >
                     Contact
                   </Link>

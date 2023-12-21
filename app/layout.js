@@ -3,6 +3,7 @@ import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import Header from "@/components/Header";
 import ContextProvider from "@/Context/Context";
+import Footer from "@/components/Footer";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <ContextProvider>
           <Header />
           {children}
+          <Footer />
         </ContextProvider>
       </body>
     </html>
