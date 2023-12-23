@@ -26,18 +26,9 @@ const clothingProduct = new mongoose.Schema({
     default: "Small",
   },
   mainImage: {
-    type: {
-      data: Buffer,
-      contentType: String,
-    },
+    type: String,
     required: true,
   },
-  additionalImages: [
-    {
-      data: Buffer,
-      contentType: String,
-    },
-  ],
 });
 
 const ClothingProduct =
