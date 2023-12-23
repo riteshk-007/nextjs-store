@@ -4,6 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import Header from "@/components/Header";
 import ContextProvider from "@/Context/Context";
 import Footer from "@/components/Footer";
+import { ProductContextProvider } from "@/Context/CreateProduct";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -18,9 +19,11 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NextTopLoader color="#000" height={4} />
         <ContextProvider>
-          <Header />
-          {children}
-          <Footer />
+          <ProductContextProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ProductContextProvider>
         </ContextProvider>
       </body>
     </html>
