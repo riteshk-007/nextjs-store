@@ -82,6 +82,7 @@ const ContextProvider = ({ children }) => {
     if (error) {
       setTimeout(() => {
         setError(false);
+        setMessage("");
       }, 3500);
     }
   }, [error]);

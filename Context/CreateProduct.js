@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   getStorage,
   ref,
@@ -8,22 +8,27 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "./Firebase";
-import { Context } from "./Context";
 
 export const ProductContext = createContext();
 
 export const ProductContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [file, setFile] = useState(null);
-  const [uploding, setUploding] = useState(false);
   const [media, setMedia] = useState("");
+  const [uploading, setUploading] = useState(false);
   const storage = getStorage(app);
-  const { setMessage, setError } = useContext(Context);
+
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
 
   // upload image
   useEffect(() => {
-    const Upload = async () => {
-      setUploding(true);
+    const upload = () => {
+      setUploading(true);
       const name = new Date().getTime() + "-" + file.name;
       const storageRef = ref(storage, name);
 
@@ -48,38 +53,45 @@ export const ProductContextProvider = ({ children }) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setMedia(downloadURL);
-            setUploding(false);
+            setUploading(false);
           });
         }
       );
     };
 
-    file && Upload();
+    file && upload();
   }, [file]);
 
   // create Product
-  const fetchProduct = async () => {
+  const fetchProduct = async (e) => {
+    e.preventDefault();
     try {
       if (media === undefined) {
         setError(true);
         setMessage("Please upload an image");
         return;
       }
-      if (uploding) {
+      if (uploading) {
         setError(true);
         setMessage("Please wait while image is uploading");
         return;
       }
       {
         const res = await axios.post("/api/product", {
-          name,
-          price,
-          description,
-          category,
+          name: name,
+          price: price,
+          description: description,
+          category: category,
           mainImage: media,
-          size,
         });
-        setProducts(res.data);
+        setProducts([...products, res.data]);
+        setName("");
+        setPrice("");
+        setDescription("");
+        setCategory("");
+        setFile(null);
+        setMedia("");
+        setMessage("Product created successfully");
       }
     } catch (error) {
       setError(true);
@@ -91,13 +103,22 @@ export const ProductContextProvider = ({ children }) => {
   return (
     <ProductContext.Provider
       value={{
-        products,
-        setProducts,
-        file,
-        setFile,
-        uploding,
+        uploading,
         setMedia,
         fetchProduct,
+        name,
+        setName,
+        price,
+        setPrice,
+        description,
+        setDescription,
+        category,
+        setCategory,
+        file,
+        setFile,
+        media,
+        message,
+        error,
       }}
     >
       {children}
