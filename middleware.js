@@ -20,15 +20,12 @@ export const middleware = (request) => {
     }
   } else {
     if (!authToken) {
-      if (path.startsWith("/api")) {
-        return NextResponse.json(
-          { error: "You are not authorized" },
-          { status: 401 }
-        );
+      if (path.startsWith("/api") || path === "/dashboard") {
+        return NextResponse.redirect(new URL("/loginpage", request.nextUrl));
       }
     }
   }
 };
 export const config = {
-  matcher: ["/", "/loginpage", "/signupPage", "/api/:path*"],
+  matcher: ["/", "/loginpage", "/signupPage", "/dashboard", "/api/:path*"],
 };

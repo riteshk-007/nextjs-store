@@ -21,8 +21,9 @@ const clothingProduct = new mongoose.Schema({
     enum: ["Men", "Women", "Kids"],
   },
   size: {
-    type: String,
+    type: [String],
     enum: ["Small", "Medium", "Large", "Extra Large"],
+    default: ["Small", "Medium", "Large", "Extra Large"],
   },
   mainImage: {
     type: String,
