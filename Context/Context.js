@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import { debounce } from "lodash";
+import toast from "react-hot-toast";
 
 export const Context = createContext();
 const ContextProvider = ({ children }) => {
@@ -39,6 +40,7 @@ const ContextProvider = ({ children }) => {
 
         if (response.data.message === "User created successfully") {
           router.push("/loginpage");
+          toast.success("User created successfully");
           setSignUp({
             name: "",
             email: "",
@@ -67,6 +69,7 @@ const ContextProvider = ({ children }) => {
 
       if (response.data.message === "User login successfully") {
         router.push("/");
+        toast.success("User login successfully");
         setLogin({
           email: "",
           password: "",

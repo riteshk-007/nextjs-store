@@ -1,6 +1,5 @@
 "use client";
 
-import { Context } from "@/Context/Context";
 import { ProductContext } from "@/Context/CreateProduct";
 import Image from "next/image";
 import { useContext } from "react";
@@ -20,7 +19,6 @@ const Form = () => {
     media,
     uploading,
   } = useContext(ProductContext);
-  const { message } = useContext(Context);
 
   const handleDragOver = (e) => {
     e.preventDefault();

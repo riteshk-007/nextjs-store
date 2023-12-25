@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import ContextProvider from "@/Context/Context";
 import Footer from "@/components/Footer";
 import { ProductContextProvider } from "@/Context/CreateProduct";
+import { Toaster } from "react-hot-toast";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
         <ContextProvider>
           <ProductContextProvider>
             <Header />
+            <Toaster />
             {children}
             <Footer />
           </ProductContextProvider>

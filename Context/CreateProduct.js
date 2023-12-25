@@ -8,6 +8,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "./Firebase";
+import toast from "react-hot-toast";
 
 export const ProductContext = createContext();
 
@@ -22,8 +23,6 @@ export const ProductContextProvider = ({ children }) => {
   const storage = getStorage(app);
 
   const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState("");
 
   // upload image
   useEffect(() => {
@@ -67,13 +66,12 @@ export const ProductContextProvider = ({ children }) => {
     e.preventDefault();
     try {
       if (media === undefined) {
-        setError(true);
-        setMessage("Please upload an image");
+        toast.error("Please upload an image");
+
         return;
       }
       if (uploading) {
-        setError(true);
-        setMessage("Please wait while image is uploading");
+        toast.error("Please wait while image is uploading");
         return;
       }
       {
@@ -91,12 +89,12 @@ export const ProductContextProvider = ({ children }) => {
         setCategory("");
         setFile(null);
         setMedia("");
-        setMessage("Product created successfully");
+        toast.success("Product created successfully");
       }
     } catch (error) {
-      setError(true);
-      setMessage(error.message);
+      toast.error(error.message);
       console.log(error);
+
       return;
     }
   };
@@ -117,8 +115,6 @@ export const ProductContextProvider = ({ children }) => {
         file,
         setFile,
         media,
-        message,
-        error,
       }}
     >
       {children}
