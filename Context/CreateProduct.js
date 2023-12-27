@@ -9,6 +9,7 @@ import {
 } from "firebase/storage";
 import { app } from "./Firebase";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const ProductContext = createContext();
 
@@ -21,6 +22,7 @@ export const ProductContextProvider = ({ children }) => {
   const [media, setMedia] = useState("");
   const [uploading, setUploading] = useState(false);
   const storage = getStorage(app);
+  const route = useRouter();
 
   const [products, setProducts] = useState([]);
 
@@ -82,7 +84,7 @@ export const ProductContextProvider = ({ children }) => {
           category: category,
           mainImage: media,
         });
-        setProducts([...products, res.data]);
+        route.push("/products");
         setName("");
         setPrice("");
         setDescription("");
@@ -98,6 +100,12 @@ export const ProductContextProvider = ({ children }) => {
       return;
     }
   };
+  //  get all products
+  useEffect(() => {
+    axios.get("/api/product").then((res) => {
+      setProducts(res.data);
+    });
+  }, []);
   return (
     <ProductContext.Provider
       value={{
