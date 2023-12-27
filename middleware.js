@@ -7,7 +7,9 @@ export const middleware = (request) => {
   if (
     path === "/api/login" ||
     path === "/api/signup" ||
-    path === "/api/login-user"
+    path === "/api/login-user" ||
+    path === "/api/product" ||
+    /^\/api\/product\/\w+$/.test(path)
   ) {
     return null;
   }

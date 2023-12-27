@@ -123,6 +123,7 @@ export const ProductContextProvider = ({ children }) => {
         file,
         setFile,
         media,
+        products,
       }}
     >
       {children}
