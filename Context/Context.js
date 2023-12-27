@@ -121,6 +121,11 @@ const ContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    if (!user?.data?.isAdmin) {
+      router.push("/");
+    }
+  }, [user, router]);
   return (
     <Context.Provider
       value={{

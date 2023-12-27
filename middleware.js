@@ -21,7 +21,7 @@ export const middleware = (request) => {
   } else {
     if (!authToken) {
       if (path.startsWith("/api") || path === "/dashboard") {
-        return NextResponse.redirect(new URL("/loginpage", request.nextUrl));
+        return NextResponse.redirect(new URL("/", request.nextUrl));
       }
     }
   }

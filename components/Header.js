@@ -77,6 +77,16 @@ const Header = () => {
                     Contact
                   </Link>
                 </li>
+                {user?.data?.isAdmin && (
+                  <li>
+                    <Link
+                      className="text-gray-800 transition hover:text-gray-800/75 "
+                      href="/dashboard"
+                    >
+                      Admin
+                    </Link>
+                  </li>
+                )}
               </ul>
             </nav>
 
