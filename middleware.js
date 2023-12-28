@@ -9,7 +9,8 @@ export const middleware = (request) => {
     path === "/api/signup" ||
     path === "/api/login-user" ||
     path === "/api/product" ||
-    /^\/api\/product\/\w+$/.test(path)
+    /^\/api\/product\/\w+$/.test(path) ||
+    path === "/api/cart"
   ) {
     return null;
   }
