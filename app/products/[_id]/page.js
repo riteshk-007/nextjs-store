@@ -1,14 +1,19 @@
 "use client";
+import { CartContext } from "@/Context/CartProvider";
+import { Context } from "@/Context/Context";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Product = () => {
   const [product, setProduct] = useState({});
-  const [size, setSize] = useState("Extra Large");
-  const [value, setValue] = useState(1);
+
   const { _id } = useParams();
+  const { setProductId, value, setValue, addItemToCart, size, setSize } =
+    useContext(CartContext);
+  const { user } = useContext(Context);
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await axios.get(`/api/product/${_id}`);
@@ -16,7 +21,7 @@ const Product = () => {
     };
     fetchProduct();
   }, [_id]);
-
+  setProductId(_id);
   return (
     <div>
       <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
@@ -29,68 +34,10 @@ const Product = () => {
                     width={400}
                     height={400}
                     src={product?.mainImage}
-                    alt={product?.name}
+                    alt={"product"}
                     className="object-cover w-full lg:h-full "
                   />
                 </div>
-                {/* <div className="flex-wrap hidden md:flex ">
-                  <div className="w-1/2 p-2 sm:w-1/4">
-                    <a
-                      href="#!"
-                      className="block border border-gray-300 dark:border-transparent dark:hover:border-gray-300 hover:border-gray-300"
-                    >
-                      <Image
-                        width={400}
-                        height={400}
-                        src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
-                        alt=""
-                        className="object-cover w-full lg:h-20"
-                      />
-                    </a>
-                  </div>
-                  <div className="w-1/2 p-2 sm:w-1/4">
-                    <a
-                      href="#!"
-                      className="block border border-transparent dark:border-transparent dark:hover:border-gray-300 hover:border-gray-300"
-                    >
-                      <Image
-                        width={400}
-                        height={400}
-                        src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
-                        alt=""
-                        className="object-cover w-full lg:h-20"
-                      />
-                    </a>
-                  </div>
-                  <div className="w-1/2 p-2 sm:w-1/4">
-                    <a
-                      href="#!"
-                      className="block border border-transparent dark:border-transparent dark:hover:border-gray-300 hover:border-gray-300"
-                    >
-                      <Image
-                        width={400}
-                        height={400}
-                        src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
-                        alt=""
-                        className="object-cover w-full lg:h-20"
-                      />
-                    </a>
-                  </div>
-                  <div className="w-1/2 p-2 sm:w-1/4">
-                    <a
-                      href="#!"
-                      className="block border border-transparent dark:border-transparent dark:hover:border-gray-300 hover:border-gray-300"
-                    >
-                      <Image
-                        width={400}
-                        height={400}
-                        src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
-                        alt=""
-                        className="object-cover w-full lg:h-20"
-                      />
-                    </a>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div className="w-full px-4 md:w-1/2 ">
@@ -184,7 +131,8 @@ const Product = () => {
                     <fieldset className="flex flex-wrap gap-3">
                       <legend className="sr-only">size</legend>
                       <select
-                        defaultValue="Small"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
                         className="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                       >
                         {product?.size?.map((size, index) => (
@@ -225,9 +173,21 @@ const Product = () => {
                 </div>
                 <div className="flex flex-wrap items-center -mx-4 ">
                   <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
-                    <button className="flex items-center bg-black justify-center w-full p-3 text-gray-200 font-semibold border border-gray-500 rounded-md  hover:bg-gray-800 hover:border-gray-600 hover:text-gray-50">
-                      Add to Cart
-                    </button>
+                    {user?.data ? (
+                      <button
+                        onClick={addItemToCart}
+                        className="flex items-center bg-black justify-center w-full p-3 text-gray-200 font-semibold border border-gray-500 rounded-md  hover:bg-gray-800 hover:border-gray-600 hover:text-gray-50"
+                      >
+                        Add to Cart
+                      </button>
+                    ) : (
+                      <Link
+                        href="/loginpage"
+                        className="flex items-center bg-black justify-center w-full p-3 text-gray-200 font-semibold border border-gray-500 rounded-md  hover:bg-gray-800 hover:border-gray-600 hover:text-gray-50"
+                      >
+                        Add to Cart
+                      </Link>
+                    )}
                   </div>
                   <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
                     <button className="flex items-center bg-black justify-center w-full p-3 text-gray-200 font-semibold border border-gray-500 rounded-md  hover:bg-gray-800 hover:border-gray-600 hover:text-gray-50">
