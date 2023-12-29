@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Context } from "./Context";
 import toast from "react-hot-toast";
 
@@ -8,62 +8,45 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const { user } = useContext(Context);
-  const [productId, setProductId] = useState(null);
-  const [value, setValue] = useState(1);
-  const [size, setSize] = useState("Medium");
-  const [usersCart, setUserCart] = useState(null);
+  const [cartdetails, setCartDetails] = useState({
+    quantity: 1,
+    size: "Medium",
+  });
 
   // add item to cart
-  const addItemToCart = async () => {
+  const addItemToCart = async (e) => {
     try {
       const res = await axios.post("/api/cart", {
         userId: user?.data?._id,
         items: [
           {
-            productId: productId,
-            quantity: value,
-            size: size,
+            productId: e._id,
+            image: e.mainImage,
+            price: e.price,
+            name: e.name,
+            quantity: cartdetails.quantity,
+            size: cartdetails.size,
           },
         ],
       });
-      setValue(1);
-      setProductId(null);
-      setSize("Medium");
+
       toast.success(res?.data?.message);
+      setCartDetails({
+        quantity: 1,
+        size: "Medium",
+      });
     } catch (error) {
       console.log(error);
-      toast.error(res?.data?.message);
+      toast.error("An error occurred");
     }
   };
 
-  // get user cart data
-  useEffect(() => {
-    const getCart = async () => {
-      try {
-        const res = await axios.post("/api/cart-item", {
-          userId: user?.data?._id,
-        });
-        setUserCart(res?.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (user?.data?._id) {
-      getCart();
-    }
-  }, [user, setUserCart]);
   return (
     <CartContext.Provider
       value={{
-        productId,
-        setProductId,
-        value,
-        setValue,
+        cartdetails,
+        setCartDetails,
         addItemToCart,
-        size,
-        setSize,
-        usersCart,
-        setUserCart,
       }}
     >
       {children}

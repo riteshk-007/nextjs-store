@@ -11,7 +11,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
 
   const { _id } = useParams();
-  const { setProductId, value, setValue, addItemToCart, size, setSize } =
+  const { cartdetails, setCartDetails, addItemToCart } =
     useContext(CartContext);
   const { user } = useContext(Context);
   useEffect(() => {
@@ -21,7 +21,7 @@ const Product = () => {
     };
     fetchProduct();
   }, [_id]);
-  setProductId(_id);
+
   return (
     <div>
       <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
@@ -33,8 +33,8 @@ const Product = () => {
                   <Image
                     width={400}
                     height={400}
-                    src={product?.mainImage}
-                    alt={"product"}
+                    src={product?.mainImage ? product.mainImage : ""}
+                    alt="product"
                     className="object-cover w-full lg:h-full "
                   />
                 </div>
@@ -131,8 +131,13 @@ const Product = () => {
                     <fieldset className="flex flex-wrap gap-3">
                       <legend className="sr-only">size</legend>
                       <select
-                        value={size}
-                        onChange={(e) => setSize(e.target.value)}
+                        value={cartdetails?.size}
+                        onChange={(e) =>
+                          setCartDetails({
+                            ...cartdetails,
+                            size: e.target.value,
+                          })
+                        }
                         className="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                       >
                         {product?.size?.map((size, index) => (
@@ -146,14 +151,23 @@ const Product = () => {
                 </div>
                 <div className="w-32 mb-8 ">
                   <label
-                    for=""
+                    htmlFor=""
                     className="w-full text-xl font-semibold text-gray-700 dark:text-gray-400"
                   >
                     Quantity
                   </label>
                   <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
                     <button
-                      onClick={() => setValue(value === 1 ? 1 : value - 1)}
+                      onClick={() => {
+                        const newQuantity =
+                          cartdetails.quantity === 1
+                            ? 1
+                            : cartdetails.quantity - 1;
+                        setCartDetails({
+                          ...cartdetails,
+                          quantity: newQuantity,
+                        });
+                      }}
                       className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400"
                     >
                       <span className="m-auto text-2xl font-thin">-</span>
@@ -161,10 +175,17 @@ const Product = () => {
                     <input
                       type="number"
                       className="flex base items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
-                      value={value}
+                      value={cartdetails.quantity}
+                      readOnly
                     />
                     <button
-                      onClick={() => setValue(value === 10 ? 10 : value + 1)}
+                      onClick={() => {
+                        const newQuantity = cartdetails.quantity + 1;
+                        setCartDetails({
+                          ...cartdetails,
+                          quantity: newQuantity,
+                        });
+                      }}
                       className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400"
                     >
                       <span className="m-auto text-2xl font-thin">+</span>
@@ -175,7 +196,7 @@ const Product = () => {
                   <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                     {user?.data ? (
                       <button
-                        onClick={addItemToCart}
+                        onClick={() => addItemToCart(product)}
                         className="flex items-center bg-black justify-center w-full p-3 text-gray-200 font-semibold border border-gray-500 rounded-md  hover:bg-gray-800 hover:border-gray-600 hover:text-gray-50"
                       >
                         Add to Cart
