@@ -33,7 +33,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
     <Transition.Root as={Fragment} show={isCartOpen}>
       <Dialog
         as="div"
-        className="relative z-10"
+        className="relative z-50"
         open={isCartOpen}
         onClose={() => setIsCartOpen(false)}
       >
@@ -121,11 +121,15 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                                                           {item?.name}
                                                         </a>
                                                       </h3>
+
                                                       <p className="ml-4">
                                                         ₹{item?.price}
                                                       </p>
                                                     </div>
                                                   </div>
+                                                  <p className="mt-4 text-[12px] text-gray-500">
+                                                    {item?.size}
+                                                  </p>
                                                   <div className="flex flex-1 items-end justify-between text-sm">
                                                     <p className="text-gray-500">
                                                       Qty {item?.quantity}

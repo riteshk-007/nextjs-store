@@ -28,7 +28,7 @@ const Product = () => {
         <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 ">
-              <div className="sticky top-0 z-50 overflow-hidden ">
+              <div className="sticky top-0 z-30 overflow-hidden ">
                 <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                   <Image
                     width={400}
