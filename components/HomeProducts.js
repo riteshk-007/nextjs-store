@@ -3,9 +3,20 @@ import { ProductContext } from "@/Context/CreateProduct";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
+import CardSkeleton from "./CardSkeleton";
 
 const HomeProducts = ({ show }) => {
   const { products } = useContext(ProductContext);
+
+  if (!products?.data) {
+    return (
+      <div
+        className={`bg-white mx-auto ${show ? "w-full lg:w-10/12" : "w-full"}`}
+      >
+        <CardSkeleton />
+      </div>
+    );
+  }
   return (
     <div>
       <div className={`bg-white mx-auto ${show ? "w-10/12" : "w-full"}`}>
