@@ -32,3 +32,22 @@ export const POST = async (req) => {
     });
   }
 };
+
+export const DELETE = async (req) => {
+  await connectDB();
+  const { id } = await req.json();
+  try {
+    const cart = await Cart.findByIdAndDelete(id);
+    return NextResponse.json({
+      message: "Item deleted",
+      cart,
+    });
+  } catch (error) {
+    console.log(error);
+
+    return NextResponse.json({
+      message: "Item not deleted",
+      error,
+    });
+  }
+};

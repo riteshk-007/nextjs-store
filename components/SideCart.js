@@ -29,6 +29,20 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
     user && getCart();
   }, [user]);
 
+  // remove item from cart
+  const removeItem = async (productId) => {
+    try {
+      const res = await axios.delete("/api/cart", {
+        data: { id: productId },
+      });
+      if (res.status === 200) {
+        setUserCart(usersCart.filter((item) => item._id !== productId));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Transition.Root as={Fragment} show={isCartOpen}>
       <Dialog
@@ -88,7 +102,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                               role="list"
                               className="-my-6 divide-y divide-gray-200"
                             >
-                              {usersCart.length ? (
+                              {usersCart?.length ? (
                                 usersCart
                                   ?.map((user, userIndex) => {
                                     return (
@@ -137,6 +151,9 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
 
                                                     <div className="flex">
                                                       <button
+                                                        onClick={() =>
+                                                          removeItem(user?._id)
+                                                        }
                                                         type="button"
                                                         className="font-medium text-[#2f4550] hover:text-[#2f4550]"
                                                       >
