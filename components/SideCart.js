@@ -9,6 +9,15 @@ import axios from "axios";
 const SideCart = ({ setIsCartOpen, isCartOpen }) => {
   const { user } = useContext(Context);
   const [usersCart, setUserCart] = useState([]);
+  const totalPrice = usersCart.reduce(
+    (total, item) =>
+      total +
+      item?.items?.reduce(
+        (total, item) => total + item?.price * item?.quantity,
+        0
+      ),
+    0
+  );
 
   // get user cart data
   useEffect(() => {
@@ -197,7 +206,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                       {user?.data && (
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>₹262.00</p>
+                          <p>₹ {totalPrice}.00</p>
                         </div>
                       )}
                       {user?.data && (
@@ -207,7 +216,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                       )}
                       <div className="mt-6">
                         <Link
-                          href={user?.data ? "/cart" : "/loginpage"}
+                          href={user?.data ? "#!" : "/loginpage"}
                           onClick={() => setIsCartOpen(false)}
                           className="flex items-center justify-center rounded-md border border-transparent bg-[#2f4550] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#2f4550]"
                         >
