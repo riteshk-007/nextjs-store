@@ -2,15 +2,26 @@
 import Link from "next/link";
 import { BsBag } from "react-icons/bs";
 import Mobile from "./Mobile";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SideCart from "./SideCart";
 import { Context } from "@/Context/Context";
+import axios from "axios";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { user, handleLogout } = useContext(Context);
+  const [categories, setCategories] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
   const name = user?.data?.name.replace(/ .*/, "");
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await axios.get("/api/category");
+      setCategories(res?.data?.data);
+    };
+    fetchCategories();
+  }, []);
   return (
     <div className="w-full relative">
       <header className="bg-white ">
@@ -51,13 +62,34 @@ const Header = () => {
                   </Link>
                 </li>
 
-                <li>
-                  <a
-                    className="text-gray-800 transition hover:text-gray-800/75 "
-                    href="#!"
+                <li
+                  className="relative"
+                  onMouseEnter={() => setIsHovered(true)}
+                >
+                  <Link
+                    href={"/category"}
+                    className="text-gray-800 transition hover:text-gray-800/75 cursor-pointer "
                   >
                     Categories
-                  </a>
+                  </Link>
+
+                  {isHovered && (
+                    <ul
+                      onMouseLeave={() => setIsHovered(false)}
+                      className="absolute top-8 left-0 w-48 bg-white shadow-lg rounded-lg py-3 z-50"
+                    >
+                      {categories?.map((category) => (
+                        <li key={category}>
+                          <Link
+                            href={`/category/${category}`}
+                            className="block px-5 py-2.5 text-sm text-gray-800 transition hover:bg-gray-100"
+                          >
+                            {category}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
 
                 <li>
@@ -155,7 +187,7 @@ const Header = () => {
         <div
           className={`absolute left-0 top-0 w-52 md:hidden bg-white shadow-lg rounded-lg z-50`}
         >
-          <Mobile setIsOpen={setIsOpen} />
+          <Mobile setIsOpen={setIsOpen} categories={categories} />
         </div>
       )}
       {isCartOpen && (

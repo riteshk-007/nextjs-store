@@ -3,7 +3,7 @@ import { Context } from "@/Context/Context";
 import Link from "next/link";
 import { useContext } from "react";
 
-const Mobile = ({ setIsOpen }) => {
+const Mobile = ({ setIsOpen, categories }) => {
   const { user, handleLogout } = useContext(Context);
   const name = user?.data?.name.replace(/ .*/, "");
   return (
@@ -75,23 +75,18 @@ const Mobile = ({ setIsOpen }) => {
                 </summary>
 
                 <ul className="mt-2 space-y-1 px-4">
-                  <li>
-                    <a
-                      href="/categories/men"
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Men
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="/categories/women"
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Women
-                    </a>
-                  </li>
+                  {categories?.map((category) => {
+                    return (
+                      <li key={category}>
+                        <Link
+                          href={`/category/${category}`}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        >
+                          {category}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </details>
             </li>
