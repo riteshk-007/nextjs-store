@@ -1,9 +1,14 @@
-const page = () => {
+"use client";
+import { useParams } from "next/navigation";
+import Category from "./Category";
+
+const Cate = () => {
+  const params = useParams();
   return (
     <div>
-      <h1>hello</h1>
+      <Category params={params.categories} />
     </div>
   );
 };
 
-export default page;
+export default Cate;
