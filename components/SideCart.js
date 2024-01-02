@@ -5,11 +5,12 @@ import Link from "next/link";
 import { Context } from "@/Context/Context";
 import Image from "next/image";
 import axios from "axios";
+import Button from "@/utils/Button";
 
 const SideCart = ({ setIsCartOpen, isCartOpen }) => {
   const { user } = useContext(Context);
   const [usersCart, setUserCart] = useState([]);
-  const totalPrice = usersCart.reduce(
+  const totalPrice = usersCart?.reduce(
     (total, item) =>
       total +
       item?.items?.reduce(
@@ -45,7 +46,7 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
         data: { id: productId },
       });
       if (res.status === 200) {
-        setUserCart(usersCart.filter((item) => item._id !== productId));
+        setUserCart(usersCart?.filter((item) => item?._id !== productId));
       }
     } catch (error) {
       console.log(error);
@@ -215,15 +216,25 @@ const SideCart = ({ setIsCartOpen, isCartOpen }) => {
                         </p>
                       )}
                       <div className="mt-6">
-                        <Link
-                          href={user?.data ? "#!" : "/loginpage"}
-                          onClick={() => setIsCartOpen(false)}
-                          className="flex items-center justify-center rounded-md border border-transparent bg-[#2f4550] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#2f4550]"
-                        >
-                          {user?.data
-                            ? "  Proceed to checkout"
-                            : "Login to View Cart"}
-                        </Link>
+                        {user?.data ? (
+                          <div
+                            className={`w-full mx-auto ${
+                              totalPrice <= 0
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                            }`}
+                          >
+                            <Button />
+                          </div>
+                        ) : (
+                          <Link
+                            href="/loginpage"
+                            onClick={() => setIsCartOpen(false)}
+                            className="flex items-center justify-center rounded-md border border-transparent bg-[#2f4550] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#2f4550]"
+                          >
+                            Login to View Cart
+                          </Link>
+                        )}
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

@@ -1,4 +1,32 @@
+"use client";
+
+import { useForm, ValidationError } from "@formspree/react";
+import { useState, useEffect } from "react";
 const Contact = () => {
+  const [state, handleSubmit] = useForm("xpzvzdkk");
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    }
+  }, [state.succeeded]);
+
+  if (showSuccess) {
+    return (
+      <div className="w-full mx-auto flex items-center justify-center p-2">
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+          <strong className="font-bold">Success!</strong>
+          <span className="block sm:inline">
+            Your message has been sent successfully.
+          </span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <section className="bg-white 00">
@@ -136,7 +164,7 @@ const Contact = () => {
             </div>
 
             <div className="p-4 py-6 rounded-lg bg-gray-50 md:p-8">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="-mx-2 md:items-center md:flex">
                   <div className="flex-1 px-2">
                     <label className="block mb-2 text-sm text-gray-600">
@@ -145,7 +173,13 @@ const Contact = () => {
                     <input
                       type="text"
                       placeholder="First Name"
+                      name="First Name"
                       className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-gray-400 der-gray-400 focus:ring-gray-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <ValidationError
+                      prefix="First Name"
+                      field="First Name"
+                      errors={state.errors}
                     />
                   </div>
 
@@ -156,7 +190,13 @@ const Contact = () => {
                     <input
                       type="text"
                       placeholder="Last Name"
+                      name="Last Name"
                       className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-gray-400 der-gray-400 focus:ring-gray-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <ValidationError
+                      prefix="Last Name"
+                      field="Last Name"
+                      errors={state.errors}
                     />
                   </div>
                 </div>
@@ -168,7 +208,13 @@ const Contact = () => {
                   <input
                     type="email"
                     placeholder="test@gmail.com"
+                    name="email"
                     className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:border-gray-400 der-gray-400 focus:ring-gray-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                  <ValidationError
+                    prefix="Email"
+                    field="email"
+                    errors={state.errors}
                   />
                 </div>
 
@@ -179,11 +225,18 @@ const Contact = () => {
                   <textarea
                     className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56  focus:border-gray-400 der-gray-400 focus:ring-gray-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Message"
+                    name="Message"
                   ></textarea>
+                  <ValidationError
+                    prefix="Message"
+                    field="Message"
+                    errors={state.errors}
+                  />
                 </div>
 
                 <button
                   type="submit"
+                  disabled={state.submitting}
                   className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
                 >
                   Send message
