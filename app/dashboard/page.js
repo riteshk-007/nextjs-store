@@ -1,11 +1,5 @@
-import Form from "./Form";
-
 const page = () => {
-  return (
-    <div>
-      <Form />
-    </div>
-  );
+  return <div className="w-full">Admin Dashboard</div>;
 };
 
 export default page;
