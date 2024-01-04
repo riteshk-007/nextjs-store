@@ -68,7 +68,7 @@ const User = () => {
               <button
                 key={number}
                 onClick={() => setCurrentPage(number)}
-                className={`h-10 w-10 mr-1 flex justify-center items-center bg-gray-200 rounded-full ${
+                className={`h-10 w-10 mr-1 flex justify-center items-center border rounded-full ${
                   currentPage === number ? "text-white bg-blue-500" : ""
                 }`}
               >

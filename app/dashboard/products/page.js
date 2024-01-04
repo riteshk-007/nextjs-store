@@ -60,7 +60,7 @@ const Products = () => {
                   width={100}
                   src={item?.mainImage}
                   alt={item?.name}
-                  className="w-28 h-16 object-cover"
+                  className="w-auto h-28 object-cover"
                 />
               </div>
               <div className="text-gray-600 mx-2">
@@ -80,8 +80,8 @@ const Products = () => {
               <button
                 key={number}
                 onClick={() => setCurrentPage(number)}
-                className={`h-10 w-10 mr-1 flex justify-center items-center bg-gray-200 rounded-full ${
-                  currentPage === number ? "text-white bg-blue-500" : ""
+                className={`h-10 w-10 mr-1 flex justify-center items-center border rounded-full ${
+                  currentPage === number ? "bg-blue-500 text-white" : ""
                 }`}
               >
                 {number}
