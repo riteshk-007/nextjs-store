@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import TableSkeleton from "../TableSkeleton";
 
 const User = () => {
   const [user, setUser] = useState([]);
@@ -42,20 +43,24 @@ const User = () => {
           <div className="font-bold">Role</div>
         </div>
 
-        {currentItems.map((item, index) => (
-          <div
-            key={item?._id}
-            className={`w-full border grid  md:grid-cols-3 text-sm gap-4 py-4 px-1 md:p-4 hover:bg-gray-200 transition-all duration-200  ${
-              index % 2 === 0 ? "bg-gray-100" : "bg-white"
-            }`}
-          >
-            <div className="text-gray-600 mx-2">{item?.name}</div>
-            <div className="text-gray-600 mx-2">{item?.email}</div>
-            <div className="text-sm text-gray-500 mx-2">
-              {item?.isAdmin ? "Admin" : "User"}
+        {currentItems.length ? (
+          currentItems.map((item, index) => (
+            <div
+              key={item?._id}
+              className={`w-full border grid  md:grid-cols-3 text-sm gap-4 py-4 px-1 md:p-4 hover:bg-gray-200 transition-all duration-200  ${
+                index % 2 === 0 ? "bg-gray-100" : "bg-white"
+              }`}
+            >
+              <div className="text-gray-600 mx-2">{item?.name}</div>
+              <div className="text-gray-600 mx-2">{item?.email}</div>
+              <div className="text-sm text-gray-500 mx-2">
+                {item?.isAdmin ? "Admin" : "User"}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <TableSkeleton />
+        )}
 
         <div className="flex justify-center mt-4">
           {pageNumbers.length > 1 &&
