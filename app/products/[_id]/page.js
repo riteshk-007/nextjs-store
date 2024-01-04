@@ -1,6 +1,7 @@
 "use client";
 import { CartContext } from "@/Context/CartProvider";
 import { Context } from "@/Context/Context";
+import RelatedProducts from "@/components/RelatedProducts";
 import Skeleton from "@/components/Skeleton";
 import axios from "axios";
 import Image from "next/image";
@@ -22,7 +23,9 @@ const Product = () => {
     };
     fetchProduct();
   }, [_id]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (!product?.mainImage) return <Skeleton />;
 
   return (
@@ -240,6 +243,7 @@ const Product = () => {
           </div>
         </div>
       </section>
+      <RelatedProducts id={_id} />
     </div>
   );
 };
