@@ -9,9 +9,9 @@ const Skeleton = () => {
         role="status"
         className="space-y-8 w-full md:w-9/12 mx-auto animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
       >
-        <div className="flex items-center justify-center lg:w-1/2  h-96 bg-gray-300 rounded  dark:bg-gray-700">
+        <div className="flex items-center justify-center lg:w-1/2  h-96 bg-gray-300 rounded  ">
           <svg
-            className="w-10 h-10 text-gray-200 dark:text-gray-600"
+            className="w-10 h-10 text-gray-200"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -21,18 +21,18 @@ const Skeleton = () => {
           </svg>
         </div>
         <div className="w-full">
-          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 my-4"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+          <div className="h-2.5 bg-gray-200 rounded-full  w-48 mb-4"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[480px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[440px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[460px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[360px]"></div>
+          <div className="h-2.5 bg-gray-200 rounded-full  w-48 my-4"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[480px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[440px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[460px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full  max-w-[360px]"></div>
         </div>
         <span className="sr-only">Loading...</span>
       </div>

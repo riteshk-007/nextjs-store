@@ -9,9 +9,9 @@ const SInglePRoductSkeleton = () => {
         role="status"
         className="space-y-8 w-full md:w-9/12 mx-auto animate-pulse md:space-y-0 md:space-x-8 flex-col rtl:space-x-reverse md:flex md:items-center"
       >
-        <div className="flex  items-center justify-center lg:w-2/5  h-96 bg-gray-300 rounded  dark:bg-gray-700">
+        <div className="flex  items-center justify-center lg:w-2/5  h-96 bg-gray-300 rounded  ">
           <svg
-            className="w-10 h-10 text-gray-200 dark:text-gray-600"
+            className="w-10 h-10 text-gray-200 "
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -21,12 +21,12 @@ const SInglePRoductSkeleton = () => {
           </svg>
         </div>
         <div className="w-full grid md:grid-cols-2 grid-rows-1 gap-3 ">
-          <div className=" h-6 md:h-12 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
-          <div className=" h-6 md:h-12 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
-          <div className=" h-6 md:h-32 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
-          <div className=" h-6 md:h-12 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
-          <div className=" mt-3 h-6 md:h-12 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
-          <div className=" mt-3 h-6 md:h-12 bg-gray-200 rounded dark:bg-gray-700 w-full  my-4"></div>
+          <div className=" h-6 md:h-12 bg-gray-200 rounded  w-full  my-4"></div>
+          <div className=" h-6 md:h-12 bg-gray-200 rounded  w-full  my-4"></div>
+          <div className=" h-6 md:h-32 bg-gray-200 rounded  w-full  my-4"></div>
+          <div className=" h-6 md:h-12 bg-gray-200 rounded  w-full  my-4"></div>
+          <div className=" mt-3 h-6 md:h-12 bg-gray-200 rounded  w-full  my-4"></div>
+          <div className=" mt-3 h-6 md:h-12 bg-gray-200 rounded  w-full  my-4"></div>
         </div>
         <span className="sr-only">Loading...</span>
       </div>

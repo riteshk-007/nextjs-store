@@ -3,10 +3,11 @@ const CardSkeleton = () => {
     <div className=" md:flex w-11/12 lg:w-full mx-auto items-center justify-center  p-2 flex-wrap md:flex-nowrap">
       <div
         role="status"
-        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse 
+        "
       >
         <svg
-          className="w-10 h-10 text-gray-200 dark:text-gray-600"
+          className="w-10 h-10 text-gray-200 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -18,10 +19,11 @@ const CardSkeleton = () => {
       </div>
       <div
         role="status"
-        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse 
+        "
       >
         <svg
-          className="w-10 h-10 text-gray-200 dark:text-gray-600"
+          className="w-10 h-10 text-gray-200 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -33,10 +35,11 @@ const CardSkeleton = () => {
       </div>
       <div
         role="status"
-        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse 
+        "
       >
         <svg
-          className="w-10 h-10 text-gray-200 dark:text-gray-600"
+          className="w-10 h-10 text-gray-200 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -48,10 +51,11 @@ const CardSkeleton = () => {
       </div>
       <div
         role="status"
-        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+        className="flex items-center justify-center h-40 md:h-56 w-full md:mx-2 my-4 bg-gray-300 rounded-lg animate-pulse 
+        "
       >
         <svg
-          className="w-10 h-10 text-gray-200 dark:text-gray-600"
+          className="w-10 h-10 text-gray-200 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

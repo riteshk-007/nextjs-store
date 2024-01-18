@@ -30,7 +30,7 @@ const Product = () => {
 
   return (
     <div>
-      <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+      <section className="overflow-hidden bg-white py-11 font-poppins ">
         <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 ">
@@ -43,9 +43,9 @@ const Product = () => {
                       product?.mainImage ? (
                         product.mainImage
                       ) : (
-                        <div className="flex items-center justify-center lg:w-1/2  h-96 bg-gray-300 rounded  dark:bg-gray-700">
+                        <div className="flex items-center justify-center lg:w-1/2  h-96 bg-gray-300 rounded  ">
                           <svg
-                            className="w-10 h-10 text-gray-200 dark:text-gray-600"
+                            className="w-10 h-10 text-gray-200 "
                             ariaHidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -65,10 +65,10 @@ const Product = () => {
             <div className="w-full px-4 md:w-1/2 ">
               <div className="lg:pl-20">
                 <div className="mb-8 ">
-                  <span className="text-lg font-medium text-rose-500 dark:text-rose-200">
+                  <span className="text-lg font-medium text-rose-500 ">
                     {product?.category}
                   </span>
-                  <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                  <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold  md:text-4xl">
                     {product?.name}
                   </h2>
                   <div className="flex items-center mb-6">
@@ -80,7 +80,7 @@ const Product = () => {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            className="w-4 mr-1 text-yellow-500 dark:text-gray-400 bi bi-star "
+                            className="w-4 mr-1 text-yellow-500  bi bi-star "
                             viewBox="0 0 16 16"
                           >
                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
@@ -94,7 +94,7 @@ const Product = () => {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            className="w-4 mr-1 text-yellow-500 dark:text-gray-400 bi bi-star "
+                            className="w-4 mr-1 text-yellow-500  bi bi-star "
                             viewBox="0 0 16 16"
                           >
                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
@@ -108,7 +108,7 @@ const Product = () => {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            className="w-4 mr-1 text-yellow-500 dark:text-gray-400 bi bi-star "
+                            className="w-4 mr-1 text-yellow-500  bi bi-star "
                             viewBox="0 0 16 16"
                           >
                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
@@ -122,7 +122,7 @@ const Product = () => {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            className="w-4 mr-1 text-yellow-500 dark:text-gray-400 bi bi-star "
+                            className="w-4 mr-1 text-yellow-500  bi bi-star "
                             viewBox="0 0 16 16"
                           >
                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
@@ -130,23 +130,23 @@ const Product = () => {
                         </a>
                       </li>
                     </ul>
-                    <p className="text-xs dark:text-gray-400 ">
+                    <p className="text-xs  ">
                       (2 customer reviews)
                     </p>
                   </div>
-                  <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                  <p className="max-w-md mb-8 text-gray-700 ">
                     {product?.description}
                   </p>
-                  <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
+                  <p className="inline-block mb-8 text-4xl font-bold text-gray-700  ">
                     <span>₹ {product?.price}</span>
-                    <span className="text-base font-normal text-gray-500 line-through dark:text-gray-400 mx-1">
+                    <span className="text-base font-normal text-gray-500 line-through  mx-1">
                       ₹ {product?.price * 3}
                     </span>
                   </p>
                 </div>
 
                 <div className="flex items-center mb-8">
-                  <h2 className="w-16 text-xl font-bold dark:text-gray-400">
+                  <h2 className="w-16 text-xl font-bold ">
                     Size:
                   </h2>
                   <div className="flex flex-wrap mx-2 -mb-2">
@@ -160,7 +160,7 @@ const Product = () => {
                             size: e.target.value,
                           })
                         }
-                        className="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        className="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       >
                         {product?.size?.map((size, index) => (
                           <option key={index} value={size}>
@@ -174,7 +174,7 @@ const Product = () => {
                 <div className="w-32 mb-8 ">
                   <label
                     htmlFor=""
-                    className="w-full text-xl font-semibold text-gray-700 dark:text-gray-400"
+                    className="w-full text-xl font-semibold text-gray-700 "
                   >
                     Quantity
                   </label>
@@ -190,13 +190,13 @@ const Product = () => {
                           quantity: newQuantity,
                         });
                       }}
-                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400"
+                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer   hover:text-gray-700  hover:bg-gray-400"
                     >
                       <span className="m-auto text-2xl font-thin">-</span>
                     </button>
                     <input
                       type="number"
-                      className="flex base items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
+                      className="flex base items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none   focus:outline-none text-md hover:text-black"
                       value={cartdetails.quantity}
                       readOnly
                     />
@@ -208,7 +208,7 @@ const Product = () => {
                           quantity: newQuantity,
                         });
                       }}
-                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400"
+                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer  hover:text-gray-700 hover:bg-gray-400"
                     >
                       <span className="m-auto text-2xl font-thin">+</span>
                     </button>
