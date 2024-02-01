@@ -1,6 +1,7 @@
 "use client";
 import { Context } from "@/Context/Context";
 import Loader from "@/components/Loader";
+import TestUser from "@/components/TestUser";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -91,6 +92,7 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <TestUser />
         </div>
 
         <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
